@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/imbue-ai/vet">
-    <img alt="Vet: Verify Everything" src="https://raw.githubusercontent.com/imbue-ai/vet/main/images/vet.svg" width="30%">
+    <img alt="Vet: Verify Everything" src="https://raw.githubusercontent.com/imbue-ai/vet/main/images/Vet.svg" width="21%">
   </a>
 </p>
 
@@ -19,6 +19,12 @@
 - **Runs anywhere**: from the terminal, as an agent skill, or in CI.
 - **Bring-your-own-model**: works with any provider using your own API keys, no subscription ever.
 - **No data collection**: requests go directly to inference providers, never through our servers.
+
+<p align="center">
+  <a href="https://github.com/imbue-ai/vet">
+    <img alt="Vet: Verify Everything" src="https://raw.githubusercontent.com/imbue-ai/vet/main/images/vet_example.png" width="100%">
+  </a>
+</p>
 
 ## Using Vet with Coding Agents
 
@@ -202,6 +208,23 @@ Then:
 ```bash
 vet "Harden error handling" --model gpt-5.2
 ```
+
+### Model registry
+
+Vet maintains a remote model registry with community-contributed model definitions. To fetch the latest definitions without upgrading vet:
+
+```bash
+vet --update-models
+```
+
+This downloads model definitions from the [registry](https://github.com/imbue-ai/vet/blob/main/registry/models.json) and caches them locally at `~/.cache/vet/remote_models.json`. Once cached, registry models appear in `vet --list-models` and can be used with `--model` like any other model.
+
+Model resolution priority (highest to lowest):
+1. User config (`.vet/models.json` or `~/.config/vet/models.json`)
+2. Builtin models (Anthropic, OpenAI, Gemini)
+3. Registry models (cached via `--update-models`)
+
+See [`registry/CONTRIBUTING.md`](https://github.com/imbue-ai/vet/blob/main/registry/CONTRIBUTING.md) for information about contributing model definitions to the registry.
 
 ### Configuration profiles (TOML)
 
