@@ -17,8 +17,9 @@
 
 - **Reviews intent and code**: checks agent conversations for goal adherence and code changes for correctness.
 - **Runs anywhere**: from the terminal, as an agent skill, or in CI.
-- **Bring-your-own-model**: works with any provider using your own API keys, no subscription ever.
-- **No data collection**: requests go directly to inference providers, never through our servers.
+- **Bring-your-own-model**: works with any provider using your own API keys.
+- **Works with existing subscriptions**: supports Anthropic and OpenAI subscriptions using [`--agentic`](#usage).
+- **Free and open source**: no account, fees, or data collection. Requests go directly to your inference provider. Licensed under the AGPL-3.0.
 
 <p align="center">
   <a href="https://github.com/imbue-ai/vet">
@@ -110,6 +111,12 @@ Compare against a base ref/commit:
 
 ```bash
 vet "Refactor storage layer" --base-commit main
+```
+
+Use Claude Code or Codex instead of LLM APIs (`--agent-harness`: `claude`, `codex`):
+
+```bash
+vet "Implement X without breaking Y" --agentic --agent-harness claude
 ```
 
 ## GitHub PRs (Actions)

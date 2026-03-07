@@ -660,6 +660,11 @@ def main(argv: list[str] | None = None) -> int:
             validate_api_key_for_model(model_id, user_config, registry_config)
         except Exception as e:
             print(f"vet: {e}", file=sys.stderr)
+            print(
+                "hint: If you have a Claude or Codex subscription, try --agentic to use your\n"
+                "      locally installed coding agent CLI instead.",
+                file=sys.stderr,
+            )
             return 2
 
         # TODO: Support OFFLINE, UPDATE_SNAPSHOT, and MOCKED modes.
@@ -721,6 +726,11 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     except MissingAPIKeyError as e:
         print(f"vet: {e}", file=sys.stderr)
+        print(
+            "hint: If you have a Claude or Codex subscription, try --agentic to use your\n"
+            "      locally installed coding agent CLI instead.",
+            file=sys.stderr,
+        )
         return 2
     # TODO: This should be refactored so we only need to handle prompt too long errors when context is overfilled.
     except (PromptTooLongError, BadAPIRequestError) as e:
